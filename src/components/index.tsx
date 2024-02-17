@@ -4,5 +4,6 @@ import Navbar from "./Navbar";
 import SignUp from "./Signup";
 import LogoutButton from "./LogoutButton";
 import Key from "./Key";
+import KeysHolder from "./KeysHolder";
 
-export {Login , LoginAndRegister, Navbar, SignUp, LogoutButton, Key}
+export {Login , LoginAndRegister, Navbar, SignUp, LogoutButton, Key, KeysHolder}
