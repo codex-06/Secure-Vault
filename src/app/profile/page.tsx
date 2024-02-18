@@ -1,7 +1,7 @@
 "use client"
 import { useRouter } from 'next/navigation'
 import React, { useCallback, useEffect, useState } from 'react';
-import { Navbar, LogoutButton, KeyHolder, Key, KeysHolder} from '@/components';
+import { Navbar, LogoutButton, Key,} from '@/components';
 import toast, { Toaster } from 'react-hot-toast';
 import axios from 'axios';
 import crypto from 'crypto';
@@ -12,7 +12,7 @@ export default function Page() {
   const [encryptedVault, setEncryptedVault] = useState("");
   const [key, setKey] = useState("");
   const [iv, setIV] = useState("");
-
+  const [maxId , setMaxId] = useState(-1);
   const handleLogout = useCallback(async () => { // Memoize handleLogout
     console.log('logout initiated');
     try {
@@ -69,6 +69,7 @@ export default function Page() {
               decryptedData.map((element, index)=>{
                 element.id = index;
               })
+              setMaxId(decryptedData.length)
               setVault(decryptedData)
               console.log(decryptedData)
               toast.success("Vault decrypted successfully");
@@ -96,20 +97,26 @@ const saveVault = async () => {
 
 function append(){
   console.log("appending started");
+  const newId = maxId + 1; // Generate a new ID
+  setMaxId(newId); 
   const newElement = {
-    id : 5,
     email: "",
     title: "",
-    password: ""
+    password: "",
+    id : maxId,
   };
   setVault((previousVault)=> [newElement,...vault])
   console.log(vault)
 }
 
-function remove(index){
-  setVault((previousVault)=> vault.filter((_, i) => i !== index))
-  console.log(updatedVault)
+
+async function remove(id, title) {
+    await setVault(previousVault => previousVault.filter(item => item.id !== id));
+    toast.success("Deleted " + title)
+    // saveVault();
+
 }
+
 
 
 return (
@@ -122,7 +129,15 @@ return (
       Aryans Vaults
     </h1>
     <h1>hello</h1>
-    <KeysHolder vault={vault} remove={remove} />
+    <div className=''>
+      <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-4 justify-items-center w-4/6 mx-auto'>
+        {vault.map((item, index) => (
+          
+          <Key id ={item.id} rmid={item.id} key={item.id} index={index} title={item.title} email={item.email} password={item.password} remove = {remove}/>
+
+        ))}
+      </div>
+  </div>
     
     <button onClick={append} className='fixed left-10 top-64 text-black bg-orange-600  rounded w-10 '>
       <svg className='fill-white w-10' xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path  d="M256 80c0-17.7-14.3-32-32-32s-32 14.3-32 32V224H48c-17.7 0-32 14.3-32 32s14.3 32 32 32H192V432c0 17.7 14.3 32 32 32s32-14.3 32-32V288H400c17.7 0 32-14.3 32-32s-14.3-32-32-32H256V80z"/></svg>
