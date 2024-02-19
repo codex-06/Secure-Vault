@@ -114,7 +114,18 @@ async function remove(id, title) {
     await setVault(previousVault => previousVault.filter(item => item.id !== id));
     toast.success("Deleted " + title)
     // saveVault();
+}
 
+function handlechange(id, target , value){
+  const updatedArray = vault.map(obj => {
+    if (obj.id === id) {
+        return { ...obj, [target] :value }; // Update the object with new properties
+    } else {
+        return obj; // Return the original object if ID doesn't match
+    }
+  });
+  setVault(updatedArray);
+  console.log(updatedArray);
 }
 
 
@@ -133,7 +144,7 @@ return (
       <div className='grid grid-cols-1 lg:grid-cols-2 gap-y-4 justify-items-center w-4/6 mx-auto'>
         {vault.map((item, index) => (
           
-          <Key id ={item.id} rmid={item.id} key={item.id} index={index} title={item.title} email={item.email} password={item.password} remove = {remove}/>
+          <Key id ={item.id}  key={item.id} index={index} keyData={item} remove = {remove} change={handlechange}/>
 
         ))}
       </div>
