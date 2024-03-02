@@ -1,12 +1,14 @@
 import React from 'react';
-import { Navbar } from '@/components';
+import { Navbar, PortfolioLink } from '@/components';
 import Image from 'next/image';
 
 export default function Page() {
   return (
     <div>
-      <Navbar></Navbar>
-      <section id="contact" className="flex justify-center flex-col h-70vh text-black">
+      <Navbar>
+        <PortfolioLink/>
+      </Navbar>
+      <section id="contact" className="flex justify-center flex-col h-70vh text-black ">
         <p className="section__text__p1">Get in Touch</p>
         <h1 className="title">Contact Me</h1>
         <div className="contact-info-upper-container">

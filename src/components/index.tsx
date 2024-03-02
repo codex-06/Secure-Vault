@@ -7,5 +7,6 @@ import Key from "./Key";
 import KeysHolder from "./KeysHolder";
 import Footer from "./Footer";
 import Modal from "./GeneratorModal";
+import PortfolioLink from "./PortfolioLink";
 
-export {Login , LoginAndRegister, Navbar, SignUp, LogoutButton, Key, KeysHolder, Footer, Modal}
+export {Login , LoginAndRegister, Navbar, SignUp, LogoutButton, Key, KeysHolder, Footer, Modal, PortfolioLink}

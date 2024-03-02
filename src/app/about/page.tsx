@@ -1,12 +1,14 @@
 // AboutPage.js
 
 import React from 'react';
-import { Navbar } from '@/components';
+import { Navbar, PortfolioLink } from '@/components';
 export default function page(){
   return (
     <>
-    <Navbar/>
-    <div className="container mx-auto p-4 text-black">
+    <Navbar>
+      <PortfolioLink/>
+    </Navbar>
+    <div className="container mx-auto py-16 text-black px-32">
       <h1 className="text-3xl font-bold mb-4">About Secure-Vault</h1>
       <p className="text-lg mb-4">
         Secure-Vault is a resilient password manager and generator built using React, Next.js, and MongoDB.
