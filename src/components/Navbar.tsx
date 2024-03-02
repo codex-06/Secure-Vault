@@ -24,8 +24,8 @@ export default function Navbar({ children }) {
         {/* Navbar links */}
         <div className={`lg:flex flex-grow items-center ${showMenu ? '' : 'hidden'}`}>
           <Link href="/" className='text-lg font-light px-4 mt-1'> Home</Link>
-          <h1 className='text-lg font-light px-4 mt-1'> About</h1>
-          <h1 className='text-lg font-light px-4 mt-1'> Contact</h1>
+          <Link href="/about" className='text-lg font-light px-4 mt-1'> About</Link>
+          <Link href="/contact" className='text-lg font-light px-4 mt-1'> Contact</Link>
         </div>
           <div className='ml-auto'>
             {children}
